@@ -86,12 +86,18 @@
         methods: {
             getWeakIcon(w){
                 return this.wicons.find(v=>v.text===w).icon;
+
+                //soluzione alternativa vista in lc
+                // return this.wicons.filter((v)=>v.text===w)[0].icon;
             },
             addPokemonToFavorite(pokemon){
+                //1 - aggiungo il like al pokemon in fPokeList
                 pokemon.like = !pokemon.like;
+                //2 - cerco lo stesso pokemon nell'array pokeList
                 let p = store.pokeList.find(v=>v.name == pokemon.name);
+                //2 - aggiungo il like anche nell'array pokeList
                 p.like = pokemon.like;
-                console.log(store.pokeList);
+
                 if(!store.favoritePokemons.includes(pokemon.name)) store.favoritePokemons.push(pokemon.name);
                 else store.favoritePokemons.splice(store.favoritePokemons.indexOf(pokemon.name), 1)
             }
